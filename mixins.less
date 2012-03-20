@@ -1,0 +1,185 @@
+/*
+	Contents:
+	1. Mixins - Grdients, Border Radius, etc
+*/
+
+
+/*=======================
+	1. Mixins 
+========================*/
+
+.gradient (@startColor, @endColor) {
+	background-color: @startColor;
+	background: -webkit-gradient(linear, left top, left bottom, from(@startColor), to(@endColor));
+	background: -webkit-linear-gradient(top, @startColor, @endColor);
+	background: -moz-linear-gradient(top, @startColor, @endColor);
+	background: -ms-linear-gradient(top, @startColor, @endColor);
+	background: -o-linear-gradient(top, @startColor, @endColor);
+}
+
+.border-radius (@radius: 5px) {
+	-webkit-border-radius: @radius;
+	-moz-border-radius:    @radius;
+	border-radius:         @radius;
+
+	-moz-background-clip:    padding;
+	-webkit-background-clip: padding-box;
+	background-clip:         padding-box;
+}
+
+.border-radiuses (@topright: 0, @bottomright: 0, @bottomleft: 0, @topleft: 0) {
+	-webkit-border-top-right-radius:    @topright;
+	-webkit-border-bottom-right-radius: @bottomright;
+	-webkit-border-bottom-left-radius:  @bottomleft;
+	-webkit-border-top-left-radius:     @topleft;
+
+	-moz-border-radius-topright:        @topright;
+	-moz-border-radius-bottomright:     @bottomright;
+	-moz-border-radius-bottomleft:      @bottomleft;
+	-moz-border-radius-topleft:         @topleft;
+
+	border-top-right-radius:            @topright;
+	border-bottom-right-radius:         @bottomright;
+	border-bottom-left-radius:          @bottomleft;
+	border-top-left-radius:             @topleft;
+
+	-moz-background-clip:    padding;
+	-webkit-background-clip: padding-box;
+	background-clip:         padding-box;
+}
+
+.transition (@transition: all, @speed: 500ms, @easing: ease-in-out) {
+	-webkit-transition: @transition @speed @easing;
+	-moz-transition:    @transition @speed @easing;
+	-ms-transition:     @transition @speed @easing;
+	-o-transition:     	@transition @speed @easing;
+}
+
+.opacity (@opacity: 0.5) {
+	-webkit-opacity: 	@opacity;
+	-moz-opacity: 		@opacity;
+	opacity: 		@opacity;
+}
+
+.drop-shadow (@x: 0, @y: 1px, @blur: 2px, @spread: 0, @alpha: 0.25) {
+	-webkit-box-shadow:	@x @y @blur @spread rgba(0, 0, 0, @alpha);
+	-moz-box-shadow:	@x @y @blur @spread rgba(0, 0, 0, @alpha);
+	box-shadow:		@x @y @blur @spread rgba(0, 0, 0, @alpha);
+}
+
+.drop-shadow-with-rgb-select (@x: 0, @y: 1px, @blur: 2px, @spread: 0, @alpha: 0.25, @r:0, @g:0, @b:0) {
+	-webkit-box-shadow:	@x @y @blur @spread rgba(@r, @g, @b, @alpha);
+	-moz-box-shadow:	@x @y @blur @spread rgba(@r, @g, @b, @alpha);
+	box-shadow:		@x @y @blur @spread rgba(@r, @g, @b, @alpha);
+}
+
+.inner-shadow (@x: 0, @y: 1px, @blur: 2px, @spread: 0, @alpha: 0.25) {
+	-webkit-box-shadow: inset @x @y @blur @spread rgba(0, 0, 0, @alpha);
+	-moz-box-shadow:    inset @x @y @blur @spread rgba(0, 0, 0, @alpha);
+	box-shadow:         inset @x @y @blur @spread rgba(0, 0, 0, @alpha);
+}
+
+.rotate (@deg) {
+	-webkit-transform: rotate(@deg);
+	-moz-transform: rotate(@deg);
+	-ms-transform: rotate(@deg);
+	-o-transform: rotate(@deg);
+}
+
+.nav-deboss-effect {
+	border-top:1px solid #a4a4a4;
+	border-bottom:1px solid #e1e1e1;
+	border-left:1px solid #c3c3c3;
+	border-right:1px solid #c2c2c2;
+}
+
+.border-deboss-effect (top, @top-emboss-color, @bottom-emboss-color) {
+	box-shadow:0 -1px 0 @top-emboss-color;
+	border-top:solid 1px @bottom-emboss-color;
+}
+
+.border-deboss-effect (bottom, @bottom-emboss-color, @top-emboss-color) {
+	box-shadow:0 1px 0 @top-emboss-color;
+	border-bottom:solid 1px @bottom-emboss-color;
+}
+
+.center-vertical {
+	text-align:center;
+	display: box;
+	display: -moz-box;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-box-pack: center;
+	-webkit-box-align: center;
+	-moz-box-orient: vertical;
+	-moz-box-pack: center;
+	-moz-box-align: center;
+	box-orient: vertical;
+	box-pack: center;
+	box-align: center;
+}
+
+.tooltip(top, @tooltip-pointer-width, @tooltip-width, @tooltip-padding) {
+	width:@tooltip-width;
+	top:25px;
+	left: round(-1 * ((@tooltip-width + (@tooltip-padding * 2)) / 2));
+	padding:@tooltip-padding;
+	&:after {
+		left:50%;
+		bottom:100%;
+		margin-left:-1 * (@tooltip-pointer-width / 2);
+		border-bottom:@tooltip-pointer-width solid #2f2f2f;
+		border-right:@tooltip-pointer-width solid transparent;
+		border-top:@tooltip-pointer-width solid transparent;
+		border-left:@tooltip-pointer-width solid transparent;
+	}
+}
+
+
+.tooltip(bottom, @tooltip-pointer-width, @tooltip-width, @tooltip-padding) {
+	width:@tooltip-width;
+	bottom:25px;
+	left: round(-1 * ((@tooltip-width + (@tooltip-padding * 2)) / 2));
+	padding:@tooltip-padding;
+	&:after {
+		left:50%;
+		top:100%;
+		margin-left:-1 * (@tooltip-pointer-width / 2);
+		border-top:@tooltip-pointer-width solid #2f2f2f;
+		border-right:@tooltip-pointer-width solid transparent;
+		border-bottom:@tooltip-pointer-width solid transparent;
+		border-left:@tooltip-pointer-width solid transparent;
+	}
+}
+.tooltip(left, @tooltip-pointer-width, @tooltip-height, @tooltip-padding) {
+	height:@tooltip-height;
+	width:@tooltip-height * (16/9);
+	left:25px;
+	top: round(-1 * ((@tooltip-height + (@tooltip-padding * 2)) / 2));
+	padding:@tooltip-padding;
+	&:after {
+		top:50%;
+		right:100%;
+		margin-top:-1 * (@tooltip-pointer-width / 2);
+		border-right:@tooltip-pointer-width solid #2f2f2f;
+		border-bottom:@tooltip-pointer-width solid transparent;
+		border-top:@tooltip-pointer-width solid transparent;
+		border-left:@tooltip-pointer-width solid transparent;
+	}
+}
+.tooltip(right, @tooltip-pointer-width, @tooltip-height, @tooltip-padding) {
+	height:@tooltip-height;
+	width:@tooltip-height * (16/9);
+	right:25px;
+	top: round(-1 * ((@tooltip-height + (@tooltip-padding * 2)) / 2));
+	padding:@tooltip-padding;
+	&:after {
+		top:50%;
+		left:100%;
+		margin-top:-1 * (@tooltip-pointer-width / 2);
+		border-left:@tooltip-pointer-width solid #2f2f2f;
+		border-bottom:@tooltip-pointer-width solid transparent;
+		border-top:@tooltip-pointer-width solid transparent;
+		border-right:@tooltip-pointer-width solid transparent;
+	}
+}
